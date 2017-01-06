@@ -18,8 +18,8 @@ app.get('/', function(req, res){
  res.sendFild(path.join(__dirname, './build', 'index.html'));
 });
 
-https.createServer(options, app).listen(3000);
-console.log('listening at https://localhost:3000');
+http.createServer(app).listen(3000);
+console.log('listening at http://localhost:3000');
 
-http.createServer(app).listen(3001);
-console.log('listening at http://localhost:3001');
+https.createServer(options, app).listen(3001);
+console.log('listening at https://localhost:3001');
