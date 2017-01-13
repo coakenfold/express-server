@@ -42,6 +42,10 @@ app.get('/', (req, res) => {
   })
 });
 
+app.delete('/quotes', (req, res) => {
+  console.log('delete endpoint!')
+});
+
 app.post('/quotes', (req, res) => {
   let q;
   let update;
@@ -59,9 +63,24 @@ app.post('/quotes', (req, res) => {
       update.quote = req.body.quote;
     }
     
+    console.log('UPDATING RECORD:', req.body.id);
+
     Quote.findByIdAndUpdate(req.body.id, update, (err, user) => {
       if (err) throw err;
       res.redirect('/');
+    })
+
+  } else if (req.body._method === 'DELETE') {
+    Quote.findById(req.body.id, (err, record) => {
+      if (err) throw err;
+
+      // delete
+      console.log('DELETING RECORD:', req.body.id);
+
+      record.remove((err) => {
+        if (err) throw err;
+        res.redirect('/');
+      })
     })
 
   } else {
@@ -70,6 +89,8 @@ app.post('/quotes', (req, res) => {
       quote: req.body.quote
     });
 
+    console.log('SAVING QUOTE');
+    
     q.save(function(err) {
       if (err) throw err;
 

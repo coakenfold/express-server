@@ -35,5 +35,12 @@
       <input type="text" placeholder="quote" name="quote">
       <button type="submit">Submit</button>
     </form>
+
+    <h2>DESTROY/DELETE</h2>
+    <form action="/quotes" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="text" placeholder="id" name="id">
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>
