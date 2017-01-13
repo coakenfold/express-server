@@ -18,3 +18,5 @@ npm-debug.log
 server.crt
 server.csr
 server.key
+
+config.js
